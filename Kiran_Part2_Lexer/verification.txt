@@ -1,0 +1,9 @@
+test_cases (__main__.LexerTests.test_cases) ... ok
+test_cli_invalid_input (__main__.LexerTests.test_cli_invalid_input) ... ok
+test_positions_and_line_endings (__main__.LexerTests.test_positions_and_line_endings) ... ok
+test_tab_error_caret (__main__.LexerTests.test_tab_error_caret) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.039s
+
+OK

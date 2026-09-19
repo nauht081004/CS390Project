@@ -1,0 +1,226 @@
+=== variable_declaration ===
+Command: python lexer.py tests/01_variable_declaration.anvi
+Source:
+let x = 10;
+Output:
+LET(let) @ 1:1
+ID(x) @ 1:5
+ASSIGN(=) @ 1:7
+NUMBER(10) @ 1:9
+SEMICOLON(;) @ 1:11
+Exit code: 0
+
+=== arithmetic_expression ===
+Command: python lexer.py tests/02_arithmetic_expression.anvi
+Source:
+let result = (10 + 5) * 2 - 8 / 4 % 3;
+Output:
+LET(let) @ 1:1
+ID(result) @ 1:5
+ASSIGN(=) @ 1:12
+LPAREN(() @ 1:14
+NUMBER(10) @ 1:15
+PLUS(+) @ 1:18
+NUMBER(5) @ 1:20
+RPAREN()) @ 1:21
+STAR(*) @ 1:23
+NUMBER(2) @ 1:25
+MINUS(-) @ 1:27
+NUMBER(8) @ 1:29
+SLASH(/) @ 1:31
+NUMBER(4) @ 1:33
+MOD(%) @ 1:35
+NUMBER(3) @ 1:37
+SEMICOLON(;) @ 1:38
+Exit code: 0
+
+=== print_statement ===
+Command: python lexer.py tests/03_print_statement.anvi
+Source:
+display(x);
+Output:
+DISPLAY(display) @ 1:1
+LPAREN(() @ 1:8
+ID(x) @ 1:9
+RPAREN()) @ 1:10
+SEMICOLON(;) @ 1:11
+Exit code: 0
+
+=== control_structure ===
+Command: python lexer.py tests/04_control_structure.anvi
+Source:
+if (score >= 60) {
+ display(score);
+} else {
+ display(0);
+}
+Output:
+IF(if) @ 1:1
+LPAREN(() @ 1:4
+ID(score) @ 1:5
+GE(>=) @ 1:11
+NUMBER(60) @ 1:14
+RPAREN()) @ 1:16
+LBRACE({) @ 1:18
+DISPLAY(display) @ 2:2
+LPAREN(() @ 2:9
+ID(score) @ 2:10
+RPAREN()) @ 2:15
+SEMICOLON(;) @ 2:16
+RBRACE(}) @ 3:1
+ELSE(else) @ 3:3
+LBRACE({) @ 3:8
+DISPLAY(display) @ 4:2
+LPAREN(() @ 4:9
+NUMBER(0) @ 4:10
+RPAREN()) @ 4:11
+SEMICOLON(;) @ 4:12
+RBRACE(}) @ 5:1
+Exit code: 0
+
+=== invalid ===
+Command: python lexer.py tests/05_invalid.anvi
+Source:
+let x = 10 @ 5;
+Output:
+Lexical error at line 1, column 12: invalid character '@'.
+let x = 10 @ 5;
+           ^
+Exit code: 1
+
+=== decimal_loop ===
+Command: python lexer.py tests/06_decimal_loop.anvi
+Source:
+let count = 1.5;
+wloop (count <= 5) { count = count + 1; }
+Output:
+LET(let) @ 1:1
+ID(count) @ 1:5
+ASSIGN(=) @ 1:11
+NUMBER(1.5) @ 1:13
+SEMICOLON(;) @ 1:16
+WLOOP(wloop) @ 2:1
+LPAREN(() @ 2:7
+ID(count) @ 2:8
+LE(<=) @ 2:14
+NUMBER(5) @ 2:17
+RPAREN()) @ 2:18
+LBRACE({) @ 2:20
+ID(count) @ 2:22
+ASSIGN(=) @ 2:28
+ID(count) @ 2:30
+PLUS(+) @ 2:36
+NUMBER(1) @ 2:38
+SEMICOLON(;) @ 2:39
+RBRACE(}) @ 2:41
+Exit code: 0
+
+=== function ===
+Command: python lexer.py tests/07_function.anvi
+Source:
+func add(a, b) { return a + b; }
+Output:
+FUNC(func) @ 1:1
+ID(add) @ 1:6
+LPAREN(() @ 1:9
+ID(a) @ 1:10
+COMMA(,) @ 1:11
+ID(b) @ 1:13
+RPAREN()) @ 1:14
+LBRACE({) @ 1:16
+RETURN(return) @ 1:18
+ID(a) @ 1:25
+PLUS(+) @ 1:27
+ID(b) @ 1:29
+SEMICOLON(;) @ 1:30
+RBRACE(}) @ 1:32
+Exit code: 0
+
+=== operator_boundaries ===
+Command: python lexer.py tests/08_operator_boundaries.anvi
+Source:
+a==b; a!=b; a<b; a>b; a<=b; a>=b; a=b;
+Output:
+ID(a) @ 1:1
+EQ(==) @ 1:2
+ID(b) @ 1:4
+SEMICOLON(;) @ 1:5
+ID(a) @ 1:7
+NE(!=) @ 1:8
+ID(b) @ 1:10
+SEMICOLON(;) @ 1:11
+ID(a) @ 1:13
+LT(<) @ 1:14
+ID(b) @ 1:15
+SEMICOLON(;) @ 1:16
+ID(a) @ 1:18
+GT(>) @ 1:19
+ID(b) @ 1:20
+SEMICOLON(;) @ 1:21
+ID(a) @ 1:23
+LE(<=) @ 1:24
+ID(b) @ 1:26
+SEMICOLON(;) @ 1:27
+ID(a) @ 1:29
+GE(>=) @ 1:30
+ID(b) @ 1:32
+SEMICOLON(;) @ 1:33
+ID(a) @ 1:35
+ASSIGN(=) @ 1:36
+ID(b) @ 1:37
+SEMICOLON(;) @ 1:38
+Exit code: 0
+
+=== keyword_boundaries ===
+Command: python lexer.py tests/09_keyword_boundaries.anvi
+Source:
+let letter = T; let false_value = F; displayValue = values[0]; floop
+Output:
+LET(let) @ 1:1
+ID(letter) @ 1:5
+ASSIGN(=) @ 1:12
+TRUE(T) @ 1:14
+SEMICOLON(;) @ 1:15
+LET(let) @ 1:17
+ID(false_value) @ 1:21
+ASSIGN(=) @ 1:33
+FALSE(F) @ 1:35
+SEMICOLON(;) @ 1:36
+ID(displayValue) @ 1:38
+ASSIGN(=) @ 1:51
+ID(values) @ 1:53
+LBRACKET([) @ 1:59
+NUMBER(0) @ 1:60
+RBRACKET(]) @ 1:61
+SEMICOLON(;) @ 1:62
+FLOOP(floop) @ 1:64
+Exit code: 0
+
+=== whitespace ===
+Command: python lexer.py tests/10_whitespace.anvi
+Source:
+
+Output:
+
+Exit code: 0
+
+=== invalid_multiline ===
+Command: python lexer.py tests/11_invalid_multiline.anvi
+Source:
+let x = 1;
+	display(x); #
+Output:
+Lexical error at line 2, column 14: invalid character '#'.
+    display(x); #
+                ^
+Exit code: 1
+
+=== standalone_exclamation ===
+Command: python lexer.py tests/12_standalone_exclamation.anvi
+Source:
+let x = !5;
+Output:
+Lexical error at line 1, column 9: invalid character '!'.
+let x = !5;
+        ^
+Exit code: 1
