@@ -1,25 +1,26 @@
-ANVI lexer code structure
+ANVI LEXER CODE STRUCTURE:
 Token class
 KEYWORDS
 Operators / Symbols
 LexerError
 Lexer class
-__init__()
-    		current()
-    		peek()
-   		advance()
-    		tokenize()
-			read_identifier ()
-read_number () 
-read_string()
-recognize operators
-recognize comparison operators recognize delimiters
-    		read_identifier()
-    		read_number()
-    		read_string()
+	__init__()
+	current()
+	peek()
+	advance()
+	tokenize()
+	read_identifier ()
+		read_number () 
+		read_string()
+		recognize operators
+		recognize comparison operators recognize delimiters
+	read_identifier()
+	read_number()
+	read_string()
     	Main program
+====================================================
 
-Source code:
+SOURCE CODE:
 # 1. Import libraries
 from dataclasses import dataclass
 
