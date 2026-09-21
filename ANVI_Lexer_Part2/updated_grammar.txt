@@ -1,0 +1,70 @@
+ANVI Updated Grammar for Part 2
+
+The Part 2 lexer adds lexical support for string literals because the Part 1
+try/catch sample uses a string in display("Error: division by zero").
+
+The existing grammar remains the basis for the lexer:
+
+<program> ::= { <function-definition> } { <statement> }
+
+<function-definition> ::= "func" <identifier> "(" [ <parameter-list> ] ")" "{"
+                          { <statement> } "}"
+
+<parameter-list> ::= <identifier> { "," <identifier> }
+
+<statement> ::= <assignment> ";"
+              | <print-statement> ";"
+              | <if-statement>
+              | <while-statement>
+              | <for-statement>
+              | <try-statement>
+              | <return-statement> ";"
+              | <function-call> ";"
+
+<assignment> ::= "let" <identifier> "=" <expression>
+               | <identifier> "=" <expression>
+
+<print-statement> ::= "display" "(" <expression> ")"
+
+<return-statement> ::= "return" <expression>
+                     | "return" <condition>
+
+<if-statement> ::= "if" "(" <condition> ")" "{" { <statement> } "}"
+                   [ "else" ( <if-statement> | "{" { <statement> } "}" ) ]
+
+<while-statement> ::= "wloop" "(" <condition> ")" "{"
+                      { <statement> } "}"
+
+<for-statement> ::= "floop" "(" <identifier> "," <expression> ","
+                    <expression> ")" "{" { <statement> } "}"
+
+<try-statement> ::= "try" "{" { <statement> "}" "catch" "(" <identifier> ")"
+                    "{" { <statement> } "}"
+
+<condition> ::= <expression> <comp-op> <expression>
+              | "T"
+              | "F"
+
+<comp-op> ::= "==" | "!=" | "<" | ">" | "<=" | ">="
+
+<expression> ::= <term> { ("+" | "-") <term> }
+
+<term> ::= <factor> { ("*" | "/" | "%") <factor> }
+
+<factor> ::= <number>
+           | <identifier>
+           | <string>
+           | "(" <expression> ")"
+           | <function-call>
+           | "T"
+           | "F"
+
+<function-call> ::= <identifier> "(" [ <argument-list> ] ")"
+
+<argument-list> ::= <expression> { "," <expression> }
+
+<identifier> ::= letter { letter | digit | "_" }
+
+<number> ::= digit { digit } [ "." digit { digit } ]
+
+<string> ::= '"' { <string-character> } '"'

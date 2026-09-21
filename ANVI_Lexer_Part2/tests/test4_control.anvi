@@ -1,0 +1,7 @@
+if (x >= 10) {
+    display(x);
+} else {
+    wloop (x < 10) {
+        x = x + 1;
+    }
+}

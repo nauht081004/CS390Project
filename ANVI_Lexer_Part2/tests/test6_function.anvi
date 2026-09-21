@@ -1,0 +1,6 @@
+func add(a, b) {
+    return a + b;
+}
+floop(i, 1, 10) {
+    display(i);
+}
