@@ -2,8 +2,6 @@
 from dataclasses import dataclass
 
 # 2. Define Token
-
-
 @dataclass
 class Token:
     type: str
@@ -14,11 +12,29 @@ class Token:
 
 # 3. Define ANVI keywords
 KEYWORDS = {
+    "let": "LET",
+    "if": "IF",
+    "else": "ELSE",
+    "wloop": "WLOOP",
+    "floop": "FLOOP",
+    "func": "FUNC",
+    "return": "RETURN",
+    "display": "DISPLAY",
+    "T": "TRUE",
+    "F": "FALSE",
+    "try": "TRY",
+    "catch": "CATCH",
 }
 
 
 # 4. Define operators and symbols
 SINGLE_CHAR_TOKENS = {
+    "+": "PLUS",
+    "-": "MINUS",
+    "*": "MULTIPLY",
+    "/": "DIVIDE",
+    "%": "MODULO",
+    "=": "ASSIGN",
     "(": "LPAREN",
     ")": "RPAREN",
     "{": "LBRACE",
@@ -28,6 +44,12 @@ SINGLE_CHAR_TOKENS = {
 }
 
 COMPARISON_TOKENS = {
+    "==": "EQUAL",
+    "!=": "NOT_EQUAL",
+    "<": "LESS",
+    ">": "GREATER",
+    "<=": "LESS_EQUAL",
+    ">=": "GREATER_EQUAL",
 }
 
 
@@ -41,19 +63,37 @@ class Lexer:
 
     # Initialize lexer
     def __init__(self, source):
-        ...
+        self.source = source
+        self.pos = 0
+        self.line = 1
+        self.column = 1
 
     # Get current character
     def current(self):
-        ...
+        if self.pos >= len(self.source):
+            return None
+        return self.source[self.pos]
 
     # Look at next character
     def peek(self):
-        ...
+        index = self.pos + offset
+        if index >= len(self.source):
+            return None
+        return self.source[index
 
     # Move to next character
     def advance(self):
-        ...
+        ch = self.current()
+        if ch is None:
+            return None
+
+        self.pos += 1
+        if ch == "\n":
+            self.line += 1
+            self.column = 1
+        else:
+            self.column += 1
+        return ch
 
     # Main function: convert source code into tokens
     def tokenize(self):
@@ -211,7 +251,26 @@ class Lexer:
             "unterminated string"
         )
 
+def lex(source: str):
+    return Lexer(source).tokenize()
 
 # 7. Main program
 if __name__ == "__main__":
-    ...
+    import sys
+
+    if len(sys.argv) != 2:
+        print("Usage: python lexer.py <source-file>")
+        sys.exit(1)
+
+    path = sys.argv[1]
+
+    try:
+        source = open(path, "r", encoding="utf-8").read()
+        for token in lex(source):
+            print(token)
+    except LexerError as error:
+        print(error)
+        sys.exit(1)
+    except OSError as error:
+        print(f"Could not read source file: {error}")
+        sys.exit(1)
