@@ -1,0 +1,6 @@
+try {
+    let result = 10.5 / 2;
+    display("Error");
+} catch (err) {
+    display(F);
+}
