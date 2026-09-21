@@ -2,6 +2,8 @@
 from dataclasses import dataclass
 
 # 2. Define Token
+
+
 @dataclass
 class Token:
     type: str
@@ -76,10 +78,10 @@ class Lexer:
 
     # Look at next character
     def peek(self):
-        index = self.pos + offset
+        index = self.pos + 1
         if index >= len(self.source):
             return None
-        return self.source[index
+        return self.source[index]
 
     # Move to next character
     def advance(self):
@@ -251,8 +253,10 @@ class Lexer:
             "unterminated string"
         )
 
+
 def lex(source: str):
     return Lexer(source).tokenize()
+
 
 # 7. Main program
 if __name__ == "__main__":

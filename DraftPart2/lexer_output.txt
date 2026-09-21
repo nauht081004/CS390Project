@@ -1,0 +1,69 @@
+=== Test 1: Variable declaration ===
+Source: let x = 10;
+Tokens:
+  Token(type='LET', value='let', line=1, column=1)
+  Token(type='ID', value='x', line=1, column=5)
+  Token(type='ASSIGN', value='=', line=1, column=7)
+  Token(type='NUMBER', value='10', line=1, column=9)
+  Token(type='SEMICOLON', value=';', line=1, column=11)
+  Token(type='EOF', value='', line=1, column=12)
+
+=== Test 2: Arithmetic expression ===
+Source: let result = x + y * 2 - 1;
+Tokens:
+  Token(type='LET', value='let', line=1, column=1)
+  Token(type='ID', value='result', line=1, column=5)
+  Token(type='ASSIGN', value='=', line=1, column=12)
+  Token(type='ID', value='x', line=1, column=14)
+  Token(type='PLUS', value='+', line=1, column=16)
+  Token(type='ID', value='y', line=1, column=18)
+  Token(type='MULTIPLY', value='*', line=1, column=20)
+  Token(type='NUMBER', value='2', line=1, column=22)
+  Token(type='MINUS', value='-', line=1, column=24)
+  Token(type='NUMBER', value='1', line=1, column=26)
+  Token(type='SEMICOLON', value=';', line=1, column=27)
+  Token(type='EOF', value='', line=1, column=28)
+
+=== Test 3: Print statement ===
+Source: display(x + 1);
+Tokens:
+  Token(type='DISPLAY', value='display', line=1, column=1)
+  Token(type='LPAREN', value='(', line=1, column=8)
+  Token(type='ID', value='x', line=1, column=9)
+  Token(type='PLUS', value='+', line=1, column=11)
+  Token(type='NUMBER', value='1', line=1, column=13)
+  Token(type='RPAREN', value=')', line=1, column=14)
+  Token(type='SEMICOLON', value=';', line=1, column=15)
+  Token(type='EOF', value='', line=1, column=16)
+
+=== Test 4: Control structure ===
+Source: if (x > 10) { display(x); } else { display(0); }
+Tokens:
+  Token(type='IF', value='if', line=1, column=1)
+  Token(type='LPAREN', value='(', line=1, column=4)
+  Token(type='ID', value='x', line=1, column=5)
+  Token(type='GREATER', value='>', line=1, column=7)
+  Token(type='NUMBER', value='10', line=1, column=9)
+  Token(type='RPAREN', value=')', line=1, column=11)
+  Token(type='LBRACE', value='{', line=1, column=13)
+  Token(type='DISPLAY', value='display', line=1, column=15)
+  Token(type='LPAREN', value='(', line=1, column=22)
+  Token(type='ID', value='x', line=1, column=23)
+  Token(type='RPAREN', value=')', line=1, column=24)
+  Token(type='SEMICOLON', value=';', line=1, column=25)
+  Token(type='RBRACE', value='}', line=1, column=27)
+  Token(type='ELSE', value='else', line=1, column=29)
+  Token(type='LBRACE', value='{', line=1, column=34)
+  Token(type='DISPLAY', value='display', line=1, column=36)
+  Token(type='LPAREN', value='(', line=1, column=43)
+  Token(type='NUMBER', value='0', line=1, column=44)
+  Token(type='RPAREN', value=')', line=1, column=45)
+  Token(type='SEMICOLON', value=';', line=1, column=46)
+  Token(type='RBRACE', value='}', line=1, column=48)
+  Token(type='EOF', value='', line=1, column=49)
+
+=== Test 5: Invalid input ===
+Source: let x = 10 @ 5;
+Tokens:
+  Lexical error at line 1, column 12: invalid character '@'
+
