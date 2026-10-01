@@ -1,0 +1,5 @@
+Van: AST Node Design & Implementation
+Sisir: Expression Parser & Operator Precedence
+Anna: Statement Parser
+Kiran: Testing & AST Demonstrations
+Rox: Grammar, README, Integration (combine code of others and make sure it works) & AI Statement
