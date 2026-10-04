@@ -2,6 +2,7 @@ from lexer import lex, LexerError
 from ast_nodes import (
     NumberNode, VariableNode, BooleanNode, StringNode,
     UnaryOpNode, BinaryOpNode,
+    ProgramNode, AssignmentNode, PrintNode,
 )
 
 
@@ -44,28 +45,40 @@ class Parser:
 
     def parse_comparison(self):
         node = self.parse_additive()
-        comparison_types = {"EQUAL", "NOT_EQUAL", "LESS", "GREATER",
-                            "LESS_EQUAL", "GREATER_EQUAL"}
+        comparison_types = {
+            "EQUAL",
+            "NOT_EQUAL",
+            "LESS",
+            "GREATER",
+            "LESS_EQUAL",
+            "GREATER_EQUAL",
+        }
+
         while self.peek_type() in comparison_types:
             op_token = self.advance()
             right = self.parse_additive()
             node = BinaryOpNode(op_token.value, node, right)
+
         return node
 
     def parse_additive(self):
         node = self.parse_term()
+
         while self.peek_type() in ("PLUS", "MINUS"):
             op_token = self.advance()
             right = self.parse_term()
             node = BinaryOpNode(op_token.value, node, right)
+
         return node
 
     def parse_term(self):
         node = self.parse_unary()
+
         while self.peek_type() in ("MULTIPLY", "DIVIDE", "MODULO"):
             op_token = self.advance()
             right = self.parse_unary()
             node = BinaryOpNode(op_token.value, node, right)
+
         return node
 
     def parse_unary(self):
@@ -73,6 +86,7 @@ class Parser:
             op_token = self.advance()
             operand = self.parse_unary()
             return UnaryOpNode(op_token.value, operand)
+
         return self.parse_primary()
 
     def parse_primary(self):
@@ -109,3 +123,81 @@ class Parser:
             f"Syntax error at line {tok.line}, column {tok.column}: "
             f"unexpected token {tok.type} ({tok.value!r})"
         )
+
+    # ============================================================
+    # Statement and program parsing
+    # ============================================================
+
+    def parse_program(self):
+        """Parse a complete program until EOF."""
+        statements = []
+
+        while self.peek_type() != "EOF":
+            statements.append(self.parse_statement())
+
+        return ProgramNode(statements)
+
+    def parse_statement(self):
+        """Parse one assignment or display statement."""
+
+        if self.peek_type() == "LET":
+            return self.parse_assignment()
+
+        if self.peek_type() == "ID":
+            return self.parse_assignment()
+
+        if self.peek_type() == "DISPLAY":
+            return self.parse_print()
+
+        tok = self.current()
+        raise ParserError(
+            f"Syntax error at line {tok.line}, column {tok.column}: "
+            f"unexpected token {tok.type} ({tok.value!r})"
+        )
+
+    def parse_assignment(self):
+        """Parse both 'let x = expression;' and 'x = expression;'."""
+
+        # Optional 'let'
+        if self.peek_type() == "LET":
+            self.advance()
+
+        # Assignment must begin with an identifier.
+        variable_token = self.expect("ID")
+        variable = VariableNode(variable_token.value)
+
+        # Require '='.
+        self.expect("ASSIGN")
+
+        # Parse the right-hand expression.
+        expression = self.parse_expression()
+
+        # Assignments require a semicolon.
+        self.expect("SEMICOLON")
+
+        return AssignmentNode(variable, expression)
+
+    def parse_print(self):
+        """Parse display(expression);"""
+
+        self.expect("DISPLAY")
+        self.expect("LPAREN")
+
+        expression = self.parse_expression()
+
+        self.expect("RPAREN")
+        self.expect("SEMICOLON")
+
+        return PrintNode(expression)
+
+
+# Optional convenience function for parsing a complete program.
+def parse_program(source):
+    parser = Parser(lex(source))
+    tree = parser.parse_program()
+
+    # Make sure no unexpected tokens remain.
+    parser.expect("EOF")
+
+    return tree
+
