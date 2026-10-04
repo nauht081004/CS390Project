@@ -1,0 +1,17 @@
+test_comparison_precedence (test_parser_kiran.ParserExpressionTests.test_comparison_precedence) ... ok
+test_decimal (test_parser_kiran.ParserExpressionTests.test_decimal) ... ok
+test_division_and_modulo (test_parser_kiran.ParserExpressionTests.test_division_and_modulo) ... ok
+test_extra_token (test_parser_kiran.ParserExpressionTests.test_extra_token) ... ok
+test_integer (test_parser_kiran.ParserExpressionTests.test_integer) ... ok
+test_left_associative_subtraction (test_parser_kiran.ParserExpressionTests.test_left_associative_subtraction) ... ok
+test_missing_operand (test_parser_kiran.ParserExpressionTests.test_missing_operand) ... ok
+test_missing_parenthesis (test_parser_kiran.ParserExpressionTests.test_missing_parenthesis) ... ok
+test_multiplication_precedence (test_parser_kiran.ParserExpressionTests.test_multiplication_precedence) ... ok
+test_parentheses (test_parser_kiran.ParserExpressionTests.test_parentheses) ... ok
+test_unary_minus (test_parser_kiran.ParserExpressionTests.test_unary_minus) ... ok
+test_variable (test_parser_kiran.ParserExpressionTests.test_variable) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.001s
+
+OK

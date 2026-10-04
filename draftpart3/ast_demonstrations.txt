@@ -1,0 +1,30 @@
+Example 1
+Input: 2 + 3 * 4
+AST:
+BinaryOpNode: +
+  NumberNode: 2
+  BinaryOpNode: *
+    NumberNode: 3
+    NumberNode: 4
+Explanation: Multiplication is the right child of addition.
+
+Example 2
+Input: (2 + 3) * 4
+AST:
+BinaryOpNode: *
+  BinaryOpNode: +
+    NumberNode: 2
+    NumberNode: 3
+  NumberNode: 4
+Explanation: Parentheses place addition beneath multiplication.
+
+Example 3
+Input: 10 - 3 - 2
+AST:
+BinaryOpNode: -
+  BinaryOpNode: -
+    NumberNode: 10
+    NumberNode: 3
+  NumberNode: 2
+Explanation: The left subtraction subtree represents (10 - 3) - 2.
+
