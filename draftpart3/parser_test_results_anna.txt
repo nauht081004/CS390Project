@@ -1,0 +1,13 @@
+test_assignment (test_parser_anna.StatementParserTests.test_assignment) ... ok
+test_assignment_preserves_precedence (test_parser_anna.StatementParserTests.test_assignment_preserves_precedence) ... ok
+test_display (test_parser_anna.StatementParserTests.test_display) ... ok
+test_missing_expression (test_parser_anna.StatementParserTests.test_missing_expression) ... ok
+test_missing_right_parenthesis (test_parser_anna.StatementParserTests.test_missing_right_parenthesis) ... ok
+test_missing_semicolon (test_parser_anna.StatementParserTests.test_missing_semicolon) ... ok
+test_multiple_statements (test_parser_anna.StatementParserTests.test_multiple_statements) ... ok
+test_reassignment (test_parser_anna.StatementParserTests.test_reassignment) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.025s
+
+OK
