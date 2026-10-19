@@ -37,9 +37,9 @@ class Parser:
         if self.check("LET"): return self.parse_assignment(True)
         if self.check("ID") and self.current + 1 < len(self.tokens) and self.tokens[self.current + 1].type == "ASSIGN":
             return self.parse_assignment(False)
-        if self.check("DISPLAY", "PRINT"): return self.parse_print()
+        if self.check("DISPLAY"): return self.parse_print()
         if self.check("IF"): return self.parse_if()
-        if self.check("WHILE", "WLOOP"): return self.parse_while()
+        if self.check("WLOOP"): return self.parse_while()
         if self.check("LBRACE"): return self.parse_block()
         if self.check("SEMICOLON"): raise ParserError("empty statements are not allowed", self.peek())
         expression = self.parse_expression()
@@ -59,10 +59,10 @@ class Parser:
         return AssignmentNode(VariableNode(name.value), expression, declaration)
 
     def parse_print(self):
-        self.advance()  # PRINT or DISPLAY
-        if self.check("SEMICOLON"): raise ParserError("expected expression after print/display", self.peek())
+        self.advance()  # DISPLAY
+        if self.check("SEMICOLON"): raise ParserError("expected expression after display", self.peek())
         expression = self.parse_expression()
-        self.consume("SEMICOLON", "expected ';' after print/display")
+        self.consume("SEMICOLON", "expected ';' after display")
         return PrintNode(expression)
 
     def parse_if(self):
@@ -76,10 +76,10 @@ class Parser:
         return IfNode(condition, then_branch, else_branch)
 
     def parse_while(self):
-        self.advance()  # WHILE or legacy WLOOP token
-        self.consume("LPAREN", "expected '(' after 'while'")
+        self.advance()  # WLOOP
+        self.consume("LPAREN", "expected '(' after 'wloop'")
         condition = self.parse_expression()
-        self.consume("RPAREN", "expected ')' after while condition")
+        self.consume("RPAREN", "expected ')' after wloop condition")
         body = self.parse_block()
         return WhileNode(condition, body)
 
