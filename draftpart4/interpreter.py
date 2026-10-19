@@ -4,7 +4,7 @@ Expression evaluation is implemented in expression_evaluator.py
 Statement execution is implemented in control_structures_kiran.py
 """
 from ast_nodes import ProgramNode
-from environment import Environment, EnviromentError
+from environment import Environment, EnvironmentError
 from expression_evaluator import evaluate as evaluate_expression, InterpreterError
 from control_structures_kiran import StatementExecutor
 
