@@ -1,11 +1,11 @@
 let x = 12;
 if (x >= 10) {
-    print(x);
+    display(x);
 } else {
-    print(0);
+    display(0);
 }
 if (x < 10) {
-    print(100);
+    display(100);
 } else {
-    print(200);
+    display(200);
 }
