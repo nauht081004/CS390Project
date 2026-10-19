@@ -43,9 +43,9 @@ class Interpreter:
         self._loop_iterations = 0
         try:
             self._execute_with_loop_guard(program)
-       except RuntimeErrorANVI:
+        except RuntimeErrorANVI:
             raise
-       except (RuntimeError, EnvironmentError) as error:
+        except (RuntimeError, EnvironmentError) as error:
             raise RuntimeErrorANVI(str(error)) from error
         return self.output
 
