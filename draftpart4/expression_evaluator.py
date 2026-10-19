@@ -104,12 +104,16 @@ def evaluate_binary(node, environment):
     if op == "*":
         return left * right
 
-    if op in ("/", "%"):
+     if op in ("/", "%"):
         if right == 0:
             name = "division" if op == "/" else "modulo"
-            raise InterpreterError(f"{name.capitalize()} by zero ({name} by zero)")
+
+            # FIXED: Remove the duplicated error message.
+            raise InterpreterError(f"{name.capitalize()} by zero")
+
         if op == "%":
             return left % right
+            
         # Whole-number results stay integers (10 / 2 is 5, not 5.0).
         if type(left) is int and type(right) is int and left % right == 0:
             return left // right
