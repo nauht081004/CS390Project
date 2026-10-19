@@ -1,6 +1,6 @@
 let x = 10;
 let y = x + 5;
-print(x);
-print(y);
+display(x);
+display(y);
 x = y - 3;
-print(x);
+display(x);
