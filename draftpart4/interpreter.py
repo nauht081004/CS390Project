@@ -4,7 +4,7 @@ Expression evaluation is implemented in expression_evaluator.py
 Statement execution is implemented in control_structures_kiran.py
 """
 from ast_nodes import ProgramNode
-from environment import Environment
+from environment import Environment, EnviromentError
 from expression_evaluator import evaluate as evaluate_expression, InterpreterError
 from control_structures_kiran import StatementExecutor
 
@@ -43,9 +43,9 @@ class Interpreter:
         self._loop_iterations = 0
         try:
             self._execute_with_loop_guard(program)
-        except RuntimeErrorANVI:
+       except RuntimeErrorANVI:
             raise
-        except RuntimeError as error:
+       except (RuntimeError, EnvironmentError) as error:
             raise RuntimeErrorANVI(str(error)) from error
         return self.output
 
