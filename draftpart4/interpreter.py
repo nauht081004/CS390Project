@@ -1,7 +1,7 @@
 """Integrated tree-walking interpreter for ANVI Part 4.
 
-Expression evaluation is implemented in expression_evaluator.py (Member 2).
-Statement execution is implemented in control_structures_kiran.py (Member 3).
+Expression evaluation is implemented in expression_evaluator.py
+Statement execution is implemented in control_structures_kiran.py
 """
 from ast_nodes import ProgramNode
 from environment import Environment
