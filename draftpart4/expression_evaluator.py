@@ -59,10 +59,10 @@ def evaluate(node, environment):
 
 def evaluate_unary(node, environment):
     value = evaluate(node.operand, environment)
-    if node.operator == "-":
+    if node.operator in ("+", "-"):
         if not is_number(value):
-            raise InterpreterError(f"Invalid operation: cannot negate {describe(value)}")
-        return -value
+            raise InterpreterError(f"Invalid operation: unary '{node.operator}' requires a number")
+        return value if node.operator == "+" else -value
     raise InterpreterError(f"Unknown unary operator '{node.operator}'")
 
 
@@ -87,6 +87,8 @@ def evaluate_binary(node, environment):
 
     # Everything else needs two numbers.
     if not (is_number(left) and is_number(right)):
+        if op in ("-", "*", "/", "%"):
+            raise InterpreterError(f"Invalid operation: operator '{op}' requires numeric operands")
         raise invalid_operation(op, left, right)
 
     if op == "<":
@@ -104,8 +106,8 @@ def evaluate_binary(node, environment):
 
     if op in ("/", "%"):
         if right == 0:
-            name = "Division" if op == "/" else "Modulo"
-            raise InterpreterError(f"{name} by zero")
+            name = "division" if op == "/" else "modulo"
+            raise InterpreterError(f"{name.capitalize()} by zero ({name} by zero)")
         if op == "%":
             return left % right
         # Whole-number results stay integers (10 / 2 is 5, not 5.0).
