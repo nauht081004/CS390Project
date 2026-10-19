@@ -15,12 +15,18 @@ class StatementExecutor:
         self.evaluate = evaluate
         self.output = output
 
+    
     def condition_is_true(self, expression):
         value = self.evaluate(expression, self.environment)
-        # Explicit policy: booleans or numbers only; zero is false.
-        if type(value) not in (bool, int, float):
-            raise RuntimeError("Condition must be a boolean or number")
-        return bool(value)
+
+        # CHANGED: Conditions must be T or F, not numbers.
+        if type(value) is not bool:
+            raise RuntimeError(
+                "Condition must evaluate to T or F"
+            )
+
+        # CHANGED: Return the boolean value directly.
+        return value
 
     def execute(self, node):
         if isinstance(node, (ProgramNode, BlockNode)):
