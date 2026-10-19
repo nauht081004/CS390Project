@@ -104,7 +104,7 @@ def evaluate_binary(node, environment):
     if op == "*":
         return left * right
 
-     if op in ("/", "%"):
+    if op in ("/", "%"):
         if right == 0:
             name = "division" if op == "/" else "modulo"
             # FIXED: Remove the duplicated error message.
