@@ -1,0 +1,32 @@
+<program> ::= { <function-definition> | <statement> } EOF
+
+<function-definition> ::= "func" <identifier> "(" [ <parameter-list> ] ")" <block>
+<parameter-list> ::= <identifier> { "," <identifier> }
+
+<statement> ::= <assignment> ";"
+              | <print-statement> ";"
+              | <if-statement>
+              | <while-statement>
+              | <block>
+              | <return-statement> ";"
+              | <expression> ";"
+
+<assignment> ::= "let" <identifier> "=" <expression>
+               | <identifier> "=" <expression>
+<print-statement> ::= "display" <expression> | "display" "(" <expression> ")"
+<return-statement> ::= "return" [ <expression> ]
+<if-statement> ::= "if" "(" <expression> ")" <block> [ "else" <block> ]
+<while-statement> ::= "wloop" "(" <expression> ")" <block>
+<block> ::= "{" { <function-definition> | <statement> } "}"
+
+<expression> ::= <comparison>
+<comparison> ::= <addition> { ("==" | "!=" | "<" | ">" | "<=" | ">=") <addition> }
+<addition> ::= <multiplication> { ("+" | "-") <multiplication> }
+<multiplication> ::= <unary> { ("*" | "/" | "%") <unary> }
+<unary> ::= ("+" | "-") <unary> | <primary>
+<primary> ::= <number> | <identifier> | <function-call> | <string> | "T" | "F" | "(" <expression> ")"
+<function-call> ::= <identifier> "(" [ <argument-list> ] ")"
+<argument-list> ::= <expression> { "," <expression> }
+<identifier> ::= letter { letter | digit | "_" }
+<number> ::= digit { digit } [ "." digit { digit } ]
+<string> ::= '"' { <string-character> } '"'
