@@ -1,0 +1,9 @@
+let x = 10;
+
+func test() {
+    let x = 20;
+    display(x);
+}
+
+test();
+display(x);
