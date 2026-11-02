@@ -14,7 +14,7 @@ class UserFunction:
         self.closure = closure
 
 class Interpreter:
-    def __init__(self, environment=None, max_loop_iterations=100000, max_call_depth=500):
+    def __init__(self, environment=None, max_loop_iterations=100000, max_call_depth=50):
         self.environment=environment if environment is not None else Environment()
         self.max_loop_iterations=max_loop_iterations; self.max_call_depth=max_call_depth
         self.output=[]; self.functions={}; self._loop_iterations=0; self._call_depth=0
