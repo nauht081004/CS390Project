@@ -32,7 +32,7 @@ class Interpreter:
         self._call_depth+=1
         if self._call_depth>self.max_call_depth:
             self._call_depth-=1; raise RuntimeErrorANVI("function call depth limit exceeded")
-        local=Environment(parent=self.environment)
+        local = Environment(parent=fn.closure)
         for name,value in zip(fn.node.parameters,args): local.define(name,value)
         try:
             self._execute_block(fn.node.body,local)
