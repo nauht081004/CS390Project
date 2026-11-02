@@ -21,6 +21,7 @@ KEYWORDS = {
     "wloop": "WLOOP",
     "floop": "FLOOP",
     "func": "FUNC",
+    "function": "FUNC",
     "return": "RETURN",
     "display": "DISPLAY",
     "print": "PRINT",
