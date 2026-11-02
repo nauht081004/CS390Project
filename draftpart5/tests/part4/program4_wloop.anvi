@@ -1,0 +1,5 @@
+let x = 1;
+wloop (x <= 5) {
+    display(x);
+    x = x + 1;
+}

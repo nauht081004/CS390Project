@@ -1,0 +1,4 @@
+func add(a, b) {
+    return a + b;
+}
+display(add(10, 20));

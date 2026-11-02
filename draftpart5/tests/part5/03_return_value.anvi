@@ -1,0 +1,6 @@
+func square(n) {
+    let result = n * n;
+    return result;
+}
+let answer = square(7);
+display(answer);

@@ -1,0 +1,11 @@
+let x = 12;
+if (x >= 10) {
+    display(x);
+} else {
+    display(0);
+}
+if (x < 10) {
+    display(100);
+} else {
+    display(200);
+}
