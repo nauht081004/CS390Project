@@ -9,7 +9,9 @@ class ReturnSignal(Exception):
     def __init__(self,value): self.value=value
 
 class UserFunction:
-    def __init__(self,node): self.node=node
+    def __init__(self, node, closure):
+        self.node = node
+        self.closure = closure
 
 class Interpreter:
     def __init__(self, environment=None, max_loop_iterations=100000, max_call_depth=500):
