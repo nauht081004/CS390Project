@@ -1,0 +1,76 @@
+Verify Anvi recursion 
+C:\Users\annak\Downloads\CS390Project-main\CS390Project-main\draftpart5>python -m unittest discover -s tests -v
+test_boolean_is_not_equal_to_number (test_expression_evaluator.ExpressionEvaluatorTests.test_boolean_is_not_equal_to_number) ... ok
+test_comparisons (test_expression_evaluator.ExpressionEvaluatorTests.test_comparisons) ... ok
+test_division_by_zero (test_expression_evaluator.ExpressionEvaluatorTests.test_division_by_zero) ... ok
+test_division_with_remainder (test_expression_evaluator.ExpressionEvaluatorTests.test_division_with_remainder) ... ok
+test_exact_division_stays_integer (test_expression_evaluator.ExpressionEvaluatorTests.test_exact_division_stays_integer) ... ok
+test_invalid_operation_boolean_arithmetic (test_expression_evaluator.ExpressionEvaluatorTests.test_invalid_operation_boolean_arithmetic) ... ok
+test_invalid_operation_string_minus_number (test_expression_evaluator.ExpressionEvaluatorTests.test_invalid_operation_string_minus_number) ... ok
+test_modulo (test_expression_evaluator.ExpressionEvaluatorTests.test_modulo) ... ok
+test_modulo_by_zero (test_expression_evaluator.ExpressionEvaluatorTests.test_modulo_by_zero) ... ok
+test_parentheses (test_expression_evaluator.ExpressionEvaluatorTests.test_parentheses) ... ok
+test_precedence (test_expression_evaluator.ExpressionEvaluatorTests.test_precedence) ... ok
+test_string_join (test_expression_evaluator.ExpressionEvaluatorTests.test_string_join) ... ok
+test_subtraction_is_left_to_right (test_expression_evaluator.ExpressionEvaluatorTests.test_subtraction_is_left_to_right) ... ok
+test_unary_minus (test_expression_evaluator.ExpressionEvaluatorTests.test_unary_minus) ... ok
+test_undefined_variable (test_expression_evaluator.ExpressionEvaluatorTests.test_undefined_variable) ... ok
+test_variable_lookup (test_expression_evaluator.ExpressionEvaluatorTests.test_variable_lookup) ... ok
+test_arguments_can_be_expressions_and_calls (test_function_parser.FunctionParserTests.test_arguments_can_be_expressions_and_calls) ... ok
+test_call_as_statement (test_function_parser.FunctionParserTests.test_call_as_statement) ... ok
+test_call_inside_assignment (test_function_parser.FunctionParserTests.test_call_inside_assignment) ... ok
+test_call_inside_display (test_function_parser.FunctionParserTests.test_call_inside_display) ... ok
+test_call_respects_operator_precedence (test_function_parser.FunctionParserTests.test_call_respects_operator_precedence) ... ok
+test_error_duplicate_parameter (test_function_parser.FunctionParserTests.test_error_duplicate_parameter) ... ok
+test_error_missing_closing_parenthesis_in_call (test_function_parser.FunctionParserTests.test_error_missing_closing_parenthesis_in_call) ... ok
+test_error_missing_function_body (test_function_parser.FunctionParserTests.test_error_missing_function_body) ... ok
+test_error_missing_function_name (test_function_parser.FunctionParserTests.test_error_missing_function_name) ... ok
+test_error_return_missing_semicolon (test_function_parser.FunctionParserTests.test_error_return_missing_semicolon) ... ok
+test_error_return_outside_function (test_function_parser.FunctionParserTests.test_error_return_outside_function) ... ok
+test_error_return_without_value (test_function_parser.FunctionParserTests.test_error_return_without_value) ... ok
+test_error_trailing_comma_in_call (test_function_parser.FunctionParserTests.test_error_trailing_comma_in_call) ... ok
+test_function_definition_with_parameters (test_function_parser.FunctionParserTests.test_function_definition_with_parameters) ... ok
+test_function_without_parameters (test_function_parser.FunctionParserTests.test_function_without_parameters) ... ok
+test_recursive_function_shape (test_function_parser.FunctionParserTests.test_recursive_function_shape) ... ok
+test_scope_example_from_assignment (test_function_parser.FunctionParserTests.test_scope_example_from_assignment) ... ok
+
+----------------------------------------------------------------------
+Ran 33 tests in 0.004s
+
+Running all tests 
+
+C:\Users\annak\Downloads\CS390Project-main\CS390Project-main\draftpart5>python -c "from pathlib import Path; from interpreter import interpret_source; print(interpret_source(Path('tests/part5_program/test1_function.anvi').read_text()))"
+['30']
+
+C:\Users\annak\Downloads\CS390Project-main\CS390Project-main\draftpart5>for %f in (tests\part5_program\*.anvi) do @echo ==== %f ==== & python -c "import sys; from pathlib import Path; from interpreter import interpret_source; print(interpret_source(Path(sys.argv[1]).read_text()))" "%f"
+==== tests\part5_program\test1_function.anvi ====
+['30']
+==== tests\part5_program\test2_parameters.anvi ====
+['20', '15']
+==== tests\part5_program\test3_scope.anvi ====
+['20', '10']
+==== tests\part5_program\test4_recursion.anvi ====
+['120']
+==== tests\part5_program\test5_nested_calls.anvi ====
+['35']
+
+C:\Users\annak\Downloads\CS390Project-main\CS390Project-main\draftpart5>python -m unittest discover -s . -p "test*.py" -v
+PASS: Local x does not overwrite global x.
+PASS: Local scope can read global variables.
+PASS: Assignment updates the local variable.
+PASS: Assignment can update an existing global variable.
+PASS: Local variables stay private.
+PASS: Separate local scopes keep separate values.
+All scope tests passed!
+test_base_case (test_recursion_kiran.RecursionScopeTests.test_base_case) ... ok
+test_cleanup_after_error (test_recursion_kiran.RecursionScopeTests.test_cleanup_after_error) ... ok
+test_depth_limit_and_recovery (test_recursion_kiran.RecursionScopeTests.test_depth_limit_and_recovery) ... ok
+test_factorial_and_separate_variables (test_recursion_kiran.RecursionScopeTests.test_factorial_and_separate_variables) ... ok
+test_wrong_argument_count (test_recursion_kiran.RecursionScopeTests.test_wrong_argument_count) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.002s
+
+OK
+
+
