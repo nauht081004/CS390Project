@@ -1,0 +1,9 @@
+func square(n) {
+    return n * n;
+}
+
+func calculate(n) {
+    return square(n) + 10;
+}
+
+display(calculate(5));
