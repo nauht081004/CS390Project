@@ -1,1 +1,13 @@
+func multiply(a, b) {
+    return a * b;
+}
 
+func subtract(a, b) {
+    return a - b;
+}
+
+let x = multiply(5, 4);
+let y = subtract(20, 5);
+
+display(x);
+display(y);
