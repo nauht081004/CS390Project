@@ -51,7 +51,10 @@ class Interpreter:
             for statement in node.statements: self._execute(statement,env)
         elif isinstance(node,FunctionDefNode):
             if node.name in self.functions: raise RuntimeErrorANVI(f"function '{node.name}' is already defined")
-            self.functions[node.name]=UserFunction(node)
+            self.functions[node.name] = UserFunction(
+                node,
+                env
+            )
         elif isinstance(node,BlockNode): self._execute_block(node,env)
         elif isinstance(node,AssignmentNode):
             value=self._evaluate(node.expression,env); name=node.variable.name
@@ -80,7 +83,10 @@ class Interpreter:
         for statement in program.statements:
             if isinstance(statement,FunctionDefNode):
                 if statement.name in self.functions: raise RuntimeErrorANVI(f"function '{statement.name}' is already defined")
-                self.functions[statement.name]=UserFunction(statement)
+                self.functions[statement.name] = UserFunction(
+                    statement,
+                    self.environment
+                )
         try:
             for statement in program.statements:
                 if not isinstance(statement,FunctionDefNode): self._execute(statement,self.environment)
