@@ -30,8 +30,9 @@ class Interpreter:
             raise RuntimeErrorANVI(f"function '{call.name}' expects {len(fn.node.parameters)} argument(s), got {len(call.arguments)}")
         args=[self._evaluate(arg,caller_env) for arg in call.arguments]
         self._call_depth+=1
-        if self._call_depth>self.max_call_depth:
-            self._call_depth-=1; raise RuntimeErrorANVI("function call depth limit exceeded")
+        if self._call_depth > self.max_call_depth:
+            self._call_depth -= 1
+            raise RuntimeErrorANVI("function call depth limit exceeded")
         local = Environment(parent=fn.closure)
         for name,value in zip(fn.node.parameters,args): local.define(name,value)
         try:
