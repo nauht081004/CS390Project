@@ -1,0 +1,43 @@
+ANVI GRAMMAR (PART 6)
+=====================
+
+<program> ::= { <function-definition> | <statement> } EOF
+
+<function-definition> ::= "func" <identifier> "(" [ <parameter-list> ] ")" <block>
+<parameter-list> ::= <identifier> { "," <identifier> }
+
+<statement> ::= <assignment>
+              | <display-statement>
+              | <if-statement>
+              | <while-statement>
+              | <block>
+              | <return-statement>
+              | <expression-statement>
+
+<assignment> ::= "let" <identifier> "=" <expression> ";"
+               | <identifier> "=" <expression> ";"
+<display-statement> ::= "display" "(" <expression> ")" ";"
+<return-statement> ::= "return" [ <expression> ] ";"
+<if-statement> ::= "if" "(" <expression> ")" <block> [ "else" <block> ]
+<while-statement> ::= "wloop" "(" <expression> ")" <block>
+<block> ::= "{" { <function-definition> | <statement> } "}"
+<expression-statement> ::= <expression> ";"
+
+<expression> ::= <comparison>
+<comparison> ::= <addition> { ("==" | "!=" | "<" | ">" | "<=" | ">=") <addition> }
+<addition> ::= <multiplication> { ("+" | "-") <multiplication> }
+<multiplication> ::= <unary> { ("*" | "/" | "%") <unary> }
+<unary> ::= ("+" | "-") <unary> | <primary>
+<primary> ::= <number> | <identifier> | <function-call> | <string> | "T" | "F" | "(" <expression> ")"
+<function-call> ::= <identifier> "(" [ <argument-list> ] ")"
+<argument-list> ::= <expression> { "," <expression> }
+
+<identifier> ::= (letter | "_") { letter | digit | "_" }
+<number> ::= digit { digit } [ "." digit { digit } ]
+<string> ::= '"' { <string-character> } '"'
+
+Display syntax rule: only display(<expression>); is valid. Examples:
+  Valid:   display(2 + 3 * 4);
+  Valid:   display((2 + 3) * 4);
+  Invalid: display 2 + 3 * 4;
+  Invalid: display (2 + 3) * 4;

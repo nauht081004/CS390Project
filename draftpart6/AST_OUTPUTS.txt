@@ -1,0 +1,54 @@
+ANVI PART 3 - VERIFIED AST OUTPUTS
+
+Example 1
+Input:
+2 + 3 * 4
+
+Output:
+AST:
+ProgramNode
+  ExpressionStatementNode
+    BinaryOpNode: +
+      NumberNode: 2
+      BinaryOpNode: *
+        NumberNode: 3
+        NumberNode: 4
+
+
+Example 2
+Input:
+let x = (10 + 5) * 2;
+
+Output:
+AST:
+ProgramNode
+  AssignmentNode
+    VariableNode: x
+    BinaryOpNode: *
+      BinaryOpNode: +
+        NumberNode: 10
+        NumberNode: 5
+      NumberNode: 2
+
+
+Example 3
+Input:
+let x = 2 + 3 * 4;
+display x;
+
+Output:
+AST:
+ProgramNode
+  AssignmentNode
+    VariableNode: x
+    BinaryOpNode: +
+      NumberNode: 2
+      BinaryOpNode: *
+        NumberNode: 3
+        NumberNode: 4
+  PrintNode
+    VariableNode: x
+
+
+Verified parser tests:
+8 tests passed.
