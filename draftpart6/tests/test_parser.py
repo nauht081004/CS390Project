@@ -61,7 +61,7 @@ class ParserTests(unittest.TestCase):
 
     def test_4_multiple_statements(self):
         ast = parse_source(
-            "let x = 2 + 3 * 4; display x;"
+            "let x = 2 + 3 * 4; display(x);"
         )
 
         self.assertEqual(len(ast.statements), 2)
